@@ -1,0 +1,351 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 220" width="860" height="220" role="img" aria-label="Shield Recall — Enterprise Privacy Engine for Windows 11">
+  <title>Shield Recall</title>
+  <desc>Enterprise Privacy Engine for Windows 11 Recall</desc>
+
+  <!-- ═══════════════════════════════════════════════
+       DEFS — gradients, clip paths
+  ════════════════════════════════════════════════════ -->
+  <defs>
+
+    <!-- Background radial glow (teal, left-center) -->
+    <radialGradient id="bgGlow" cx="28%" cy="50%" r="55%">
+      <stop offset="0%"   stop-color="#0d2e22" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0a0c0f" stop-opacity="1"/>
+    </radialGradient>
+
+    <!-- Shield face gradient -->
+    <linearGradient id="shieldFace" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#142e24"/>
+      <stop offset="100%" stop-color="#0a1812"/>
+    </linearGradient>
+
+    <!-- Teal glow gradient for shield border -->
+    <linearGradient id="shieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#3EB489"/>
+      <stop offset="50%"  stop-color="#56d4a6"/>
+      <stop offset="100%" stop-color="#3EB489"/>
+    </linearGradient>
+
+    <!-- Text gradient: teal → cyan-white -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#3EB489"/>
+      <stop offset="55%"  stop-color="#7ee8c8"/>
+      <stop offset="100%" stop-color="#b8f5e2"/>
+    </linearGradient>
+
+    <!-- Scan line gradient (horizontal sweep) -->
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#3EB489" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="#3EB489" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#3EB489" stop-opacity="0.35"/>
+      <stop offset="55%"  stop-color="#3EB489" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3EB489" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Clip: right panel -->
+    <clipPath id="rightClip">
+      <rect x="270" y="0" width="590" height="220"/>
+    </clipPath>
+
+    <!-- Clip: banner bounds -->
+    <clipPath id="bannerClip">
+      <rect x="0" y="0" width="860" height="220"/>
+    </clipPath>
+
+  </defs>
+
+  <!-- ═══════════════════════════════════════════════
+       BACKGROUND
+  ════════════════════════════════════════════════════ -->
+  <rect width="860" height="220" fill="#0a0c0f"/>
+  <rect width="860" height="220" fill="url(#bgGlow)"/>
+
+  <!-- Subtle grid lines (vertical) -->
+  <g stroke="#1a2a22" stroke-width="0.5" opacity="0.6" clip-path="url(#bannerClip)">
+    <line x1="86"  y1="0" x2="86"  y2="220"/>
+    <line x1="172" y1="0" x2="172" y2="220"/>
+    <line x1="258" y1="0" x2="258" y2="220"/>
+    <line x1="344" y1="0" x2="344" y2="220"/>
+    <line x1="430" y1="0" x2="430" y2="220"/>
+    <line x1="516" y1="0" x2="516" y2="220"/>
+    <line x1="602" y1="0" x2="602" y2="220"/>
+    <line x1="688" y1="0" x2="688" y2="220"/>
+    <line x1="774" y1="0" x2="774" y2="220"/>
+  </g>
+  <!-- Subtle grid lines (horizontal) -->
+  <g stroke="#1a2a22" stroke-width="0.5" opacity="0.6">
+    <line x1="0" y1="44"  x2="860" y2="44"/>
+    <line x1="0" y1="88"  x2="860" y2="88"/>
+    <line x1="0" y1="132" x2="860" y2="132"/>
+    <line x1="0" y1="176" x2="860" y2="176"/>
+  </g>
+
+  <!-- Animated scan line sweep -->
+  <rect x="-860" y="0" width="860" height="220" fill="url(#scanGrad)" clip-path="url(#bannerClip)">
+    <animateTransform attributeName="transform" type="translate"
+      values="-860,0;860,0" dur="3.5s" repeatCount="indefinite"
+      calcMode="linear"/>
+  </rect>
+
+  <!-- Left panel separator -->
+  <line x1="240" y1="18" x2="240" y2="202" stroke="#1d5c38" stroke-width="0.75" opacity="0.8"/>
+
+  <!-- ═══════════════════════════════════════════════
+       SHIELD ICON — left panel
+       Hexagonal shield assembled from 6 path segments
+       that draw in one by one
+  ════════════════════════════════════════════════════ -->
+  <g transform="translate(120, 110)">
+
+    <!-- Shield glow halo (pulsing) -->
+    <ellipse cx="0" cy="5" rx="56" ry="60" fill="#3EB489" opacity="0">
+      <animate attributeName="opacity" values="0;0.07;0" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="56;65;56" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="60;70;60" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- Shield fill -->
+    <!-- Path: top-left, top-right, right side taper, bottom point, left side taper -->
+    <path d="M0,-78 L44,-58 L62,10 L0,80 L-62,10 L-44,-58 Z"
+          fill="url(#shieldFace)" stroke="none"/>
+
+    <!-- Shield border — segment 1: top arch -->
+    <path d="M0,-78 L44,-58" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="52" stroke-dashoffset="52">
+      <animate attributeName="stroke-dashoffset" from="52" to="0"
+               dur="0.4s" begin="0.1s" fill="freeze"/>
+    </path>
+
+    <!-- Shield border — segment 2: upper right -->
+    <path d="M44,-58 L62,10" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="70" stroke-dashoffset="70">
+      <animate attributeName="stroke-dashoffset" from="70" to="0"
+               dur="0.4s" begin="0.5s" fill="freeze"/>
+    </path>
+
+    <!-- Shield border — segment 3: lower right to point -->
+    <path d="M62,10 L0,80" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="95" stroke-dashoffset="95">
+      <animate attributeName="stroke-dashoffset" from="95" to="0"
+               dur="0.4s" begin="0.9s" fill="freeze"/>
+    </path>
+
+    <!-- Shield border — segment 4: lower left to point -->
+    <path d="M0,80 L-62,10" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="95" stroke-dashoffset="95">
+      <animate attributeName="stroke-dashoffset" from="95" to="0"
+               dur="0.4s" begin="1.3s" fill="freeze"/>
+    </path>
+
+    <!-- Shield border — segment 5: upper left -->
+    <path d="M-62,10 L-44,-58" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="70" stroke-dashoffset="70">
+      <animate attributeName="stroke-dashoffset" from="70" to="0"
+               dur="0.4s" begin="1.7s" fill="freeze"/>
+    </path>
+
+    <!-- Shield border — segment 6: close top -->
+    <path d="M-44,-58 L0,-78" fill="none" stroke="url(#shieldBorder)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="52" stroke-dashoffset="52">
+      <animate attributeName="stroke-dashoffset" from="52" to="0"
+               dur="0.4s" begin="2.1s" fill="freeze"/>
+    </path>
+
+    <!-- Inner circuit lines — horizontal -->
+    <g stroke="#3EB489" stroke-width="1" opacity="0" stroke-linecap="round">
+      <animate attributeName="opacity" from="0" to="0.35" begin="2.6s" dur="0.4s" fill="freeze"/>
+      <line x1="-32" y1="-18" x2="32" y2="-18"/>
+      <line x1="-24" y1="0"   x2="24" y2="0"/>
+      <line x1="-16" y1="18"  x2="16" y2="18"/>
+      <!-- Vertical connectors -->
+      <line x1="-24" y1="-18" x2="-24" y2="0"/>
+      <line x1="24"  y1="-18" x2="24"  y2="0"/>
+      <line x1="-12" y1="0"   x2="-12" y2="18"/>
+      <line x1="12"  y1="0"   x2="12"  y2="18"/>
+    </g>
+
+    <!-- Lock body -->
+    <rect x="-13" y="-8" width="26" height="22" rx="3"
+          fill="#0a1812" stroke="#3EB489" stroke-width="1.8"
+          opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="2.6s" dur="0.3s" fill="freeze"/>
+    </rect>
+
+    <!-- Lock shackle -->
+    <path d="M-8,-8 L-8,-20 Q0,-30 8,-20 L8,-8" fill="none"
+          stroke="#3EB489" stroke-width="1.8" stroke-linecap="round"
+          stroke-dasharray="50" stroke-dashoffset="50">
+      <animate attributeName="stroke-dashoffset" from="50" to="0"
+               begin="2.8s" dur="0.3s" fill="freeze"/>
+    </path>
+
+    <!-- Lock keyhole -->
+    <circle cx="0" cy="5" r="4.5" fill="#3EB489" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.0s" dur="0.2s" fill="freeze"/>
+    </circle>
+    <line x1="0" y1="8" x2="0" y2="14" stroke="#0a1812" stroke-width="2.5"
+          stroke-linecap="round" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="3.0s" dur="0.2s" fill="freeze"/>
+    </line>
+
+    <!-- Corner tick marks (circuit pad style) -->
+    <g fill="#3EB489" opacity="0">
+      <animate attributeName="opacity" from="0" to="0.6" begin="2.6s" dur="0.3s" fill="freeze"/>
+      <rect x="-4" y="-82" width="8" height="3" rx="1"/>
+      <rect x="41" y="-63" width="3" height="8" rx="1" transform="rotate(30 42 -59)"/>
+      <rect x="57" y="6"   width="3" height="8" rx="1"/>
+      <rect x="-4" y="77"  width="8" height="3" rx="1"/>
+      <rect x="-62" y="6"  width="3" height="8" rx="1"/>
+      <rect x="-46" y="-63" width="3" height="8" rx="1" transform="rotate(-30 -44 -59)"/>
+    </g>
+
+  </g>
+
+  <!-- ═══════════════════════════════════════════════
+       RIGHT PANEL — text content
+  ════════════════════════════════════════════════════ -->
+
+  <!-- EYEBROW label -->
+  <text x="274" y="60" font-family="'Courier New', Courier, monospace"
+        font-size="10" font-weight="400" letter-spacing="3"
+        fill="#3EB489" opacity="0" text-rendering="geometricPrecision">
+    WINDOWS 11 · PRIVACY ENGINE
+    <animate attributeName="opacity" from="0" to="0.7" begin="1.8s" dur="0.5s" fill="freeze"/>
+  </text>
+
+  <!-- Main title: SHIELD -->
+  <text x="272" y="118" font-family="'Courier New', Courier, monospace"
+        font-size="58" font-weight="700" letter-spacing="-1"
+        fill="url(#titleGrad)" opacity="0" text-rendering="geometricPrecision">
+    SHIELD
+    <animate attributeName="opacity" from="0" to="1" begin="2.2s" dur="0.5s" fill="freeze"/>
+  </text>
+
+  <!-- Main title: RECALL (offset, distinct weight) -->
+  <text x="478" y="118" font-family="'Courier New', Courier, monospace"
+        font-size="58" font-weight="400" letter-spacing="-1"
+        fill="#f4f4f5" opacity="0" text-rendering="geometricPrecision">
+    RECALL
+    <animate attributeName="opacity" from="0" to="1" begin="2.4s" dur="0.5s" fill="freeze"/>
+  </text>
+
+  <!-- Thin divider line under title -->
+  <line x1="274" y1="128" x2="830" y2="128" stroke="#1d5c38" stroke-width="0.75"
+        stroke-dasharray="556" stroke-dashoffset="556">
+    <animate attributeName="stroke-dashoffset" from="556" to="0"
+             begin="2.7s" dur="0.6s" fill="freeze"/>
+  </line>
+
+  <!-- Subtitle -->
+  <text x="274" y="154" font-family="'Courier New', Courier, monospace"
+        font-size="13.5" font-weight="400" letter-spacing="0.5"
+        fill="#7a9e8e" opacity="0" text-rendering="geometricPrecision">
+    Real-time PII redaction  ·  snapshot telemetry  ·  OS kill switch
+    <animate attributeName="opacity" from="0" to="1" begin="3.1s" dur="0.5s" fill="freeze"/>
+  </text>
+
+  <!-- ── BADGE ROW ── -->
+  <!-- Badge 1: Python -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="3.4s" dur="0.3s" fill="freeze"/>
+    <rect x="274" y="170" width="76" height="20" rx="4"
+          fill="#0d2e22" stroke="#1d5c38" stroke-width="0.75"/>
+    <text x="282" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#3EB489" letter-spacing="0.5">Python 3.11+</text>
+  </g>
+
+  <!-- Badge 2: FastAPI -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="3.55s" dur="0.3s" fill="freeze"/>
+    <rect x="358" y="170" width="62" height="20" rx="4"
+          fill="#0d2e22" stroke="#1d5c38" stroke-width="0.75"/>
+    <text x="366" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#3EB489" letter-spacing="0.5">FastAPI</text>
+  </g>
+
+  <!-- Badge 3: Zero-trust -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="3.7s" dur="0.3s" fill="freeze"/>
+    <rect x="428" y="170" width="78" height="20" rx="4"
+          fill="#0d2e22" stroke="#1d5c38" stroke-width="0.75"/>
+    <text x="436" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#3EB489" letter-spacing="0.5">Zero-trust</text>
+  </g>
+
+  <!-- Badge 4: Local-only -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="3.85s" dur="0.3s" fill="freeze"/>
+    <rect x="514" y="170" width="76" height="20" rx="4"
+          fill="#0d2e22" stroke="#1d5c38" stroke-width="0.75"/>
+    <text x="522" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#3EB489" letter-spacing="0.5">Local-only</text>
+  </g>
+
+  <!-- Badge 5: Windows 11 (red accent — the threat being shielded) -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="4.0s" dur="0.3s" fill="freeze"/>
+    <rect x="598" y="170" width="76" height="20" rx="4"
+          fill="#2e0d0d" stroke="#5c1a1a" stroke-width="0.75"/>
+    <text x="606" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#e05555" letter-spacing="0.5">Windows 11</text>
+  </g>
+
+  <!-- Badge 6: MIT -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="4.15s" dur="0.3s" fill="freeze"/>
+    <rect x="682" y="170" width="50" height="20" rx="4"
+          fill="#0d2e22" stroke="#1d5c38" stroke-width="0.75"/>
+    <text x="694" y="184" font-family="'Courier New', Courier, monospace"
+          font-size="10" fill="#3EB489" letter-spacing="0.5">MIT</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════
+       DATA TRACE — animated dots moving along circuit path
+       (right side decorative element)
+  ════════════════════════════════════════════════════ -->
+
+  <!-- Right-edge circuit trace path -->
+  <path id="tracePath"
+        d="M840,30 L840,70 L820,80 L820,140 L840,150 L840,190"
+        fill="none" stroke="#1d5c38" stroke-width="1" opacity="0.5"/>
+
+  <!-- Animated data packet dot 1 -->
+  <circle r="2.5" fill="#3EB489" opacity="0.9">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="3.5s">
+      <mpath href="#tracePath"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.4s" repeatCount="indefinite" begin="3.5s"/>
+  </circle>
+
+  <!-- Animated data packet dot 2 (offset) -->
+  <circle r="2.5" fill="#56d4a6" opacity="0.7">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="4.7s">
+      <mpath href="#tracePath"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0.7;0.7;0" dur="2.4s" repeatCount="indefinite" begin="4.7s"/>
+  </circle>
+
+  <!-- Left-edge thin accent bar -->
+  <rect x="0" y="0" width="4" height="220" fill="#3EB489" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.6" begin="0.05s" dur="0.3s" fill="freeze"/>
+  </rect>
+  <!-- Accent bar pulse -->
+  <rect x="0" y="0" width="4" height="220" fill="#3EB489" opacity="0">
+    <animate attributeName="opacity" values="0;0.25;0" dur="4s" repeatCount="indefinite" begin="4s"/>
+  </rect>
+
+  <!-- Bottom border line (draws in) -->
+  <line x1="0" y1="219" x2="860" y2="219" stroke="#1d5c38" stroke-width="0.75"
+        stroke-dasharray="860" stroke-dashoffset="860">
+    <animate attributeName="stroke-dashoffset" from="860" to="0"
+             begin="0.1s" dur="1.2s" fill="freeze"/>
+  </line>
+
+  <!-- Top border line (draws in) -->
+  <line x1="0" y1="1" x2="860" y2="1" stroke="#1d5c38" stroke-width="0.75"
+        stroke-dasharray="860" stroke-dashoffset="860">
+    <animate attributeName="stroke-dashoffset" from="860" to="0"
+             begin="0.1s" dur="1.2s" fill="freeze"/>
+  </line>
+
+</svg>
