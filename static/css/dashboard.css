@@ -1,0 +1,453 @@
+/* ============================================================
+   Shield Recall — dashboard.css
+   Dark-first, system-font stack, no external font dependencies.
+   ============================================================ */
+
+:root {
+  --bg-base:    #09090b;
+  --bg-panel:   #111114;
+  --bg-card:    #18181b;
+  --border:     rgba(255,255,255,0.08);
+  --border-md:  rgba(255,255,255,0.14);
+  --text-prim:  #f4f4f5;
+  --text-sec:   #a1a1aa;
+  --text-hint:  #52525b;
+
+  --teal:       #3EB489;
+  --amber:      #d4a020;
+  --red:        #e05555;
+  --blue:       #4a8fd4;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-base);
+  color: var(--text-prim);
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ---- Layout wrapper ---- */
+#sr-root {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.sr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 0.5px solid var(--border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sr-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sr-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: #0a2e1e;
+  border: 0.5px solid #1d5c38;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sr-logo-icon i { font-size: 20px; color: var(--teal); }
+
+.sr-logo-text h1 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-prim);
+}
+
+.sr-logo-text p { font-size: 12px; color: var(--text-sec); }
+
+.header-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* ============================================================
+   Badges
+   ============================================================ */
+.sr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 0.5px solid;
+  white-space: nowrap;
+}
+
+.badge-admin    { background:#0d2e1a; color:var(--teal);  border-color:#1d5c38; }
+.badge-user     { background:#2e2205; color:var(--amber); border-color:#5c4510; }
+.badge-active   { background:#2e0d0d; color:var(--red);   border-color:#5c1a1a; }
+.badge-shielded { background:#0d2e1a; color:var(--teal);  border-color:#1d5c38; }
+
+/* ============================================================
+   Pulse dots
+   ============================================================ */
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+.pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-dot.red { background: var(--red); }
+
+/* ============================================================
+   Grid helpers
+   ============================================================ */
+.sr-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.three-col { grid-template-columns: repeat(3, 1fr); }
+.two-col   { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 720px) {
+  .three-col, .two-col { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Stat cards
+   ============================================================ */
+.sr-card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.125rem;
+}
+
+.sr-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-sec);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.sr-card-value { font-size: 28px; font-weight: 600; line-height: 1.1; }
+.sr-card-sub   { font-size: 11px; color: var(--text-hint); margin-top: 6px; display:flex; align-items:center; gap:5px; }
+
+.snap-counter-wrap { display: flex; align-items: baseline; gap: 7px; }
+.snap-counter  { font-size: 32px; font-weight: 600; line-height: 1; }
+.snap-unit     { font-size: 13px; color: var(--text-sec); }
+
+.val-teal  { color: var(--teal);  }
+.val-amber { color: var(--amber); }
+.val-red   { color: var(--red);   }
+.val-blue  { color: var(--blue);  }
+
+/* ============================================================
+   Section panels
+   ============================================================ */
+.sr-section {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.sr-section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-sec);
+  margin-bottom: 0.875rem;
+}
+
+.sr-section-title i { font-size: 15px; }
+
+/* ============================================================
+   Toggle switch
+   ============================================================ */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toggle-info h3 { font-size: 14px; font-weight: 500; }
+.toggle-info p  { font-size: 12px; color: var(--text-sec); margin-top: 2px; }
+
+.toggle-track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--border-md);
+  border-radius: 12px;
+  transition: background .25s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle-track.red-on { background: var(--red); }
+.toggle-track.on     { background: var(--teal); }
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .25s;
+  pointer-events: none;
+}
+
+.toggle-track.red-on .toggle-thumb,
+.toggle-track.on .toggle-thumb { transform: translateX(20px); }
+
+.toggle-label      { font-size: 11px; font-weight: 500; text-align:center; color:var(--text-hint); }
+.toggle-label.on   { color: var(--teal); }
+.toggle-label.red-on { color: var(--red); }
+
+.admin-note {
+  font-size: 11px;
+  color: var(--text-hint);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.kill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 0.5px solid;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s, opacity .15s;
+  background: transparent;
+}
+
+.kill-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+.kill-btn.active  { border-color:#5c1a1a; color:var(--red); }
+.kill-btn.active:not(:disabled):hover  { background:#2e0d0d; }
+
+.kill-btn.inactive { border-color:#1d5c38; color:var(--teal); }
+.kill-btn.inactive:not(:disabled):hover { background:#0d2e1a; }
+
+.kill-btn.purge   { border-color:#5c4510; color:var(--amber); }
+.kill-btn.purge:hover { background:#2e2205; }
+
+.purge-result { margin-top: 8px; font-size: 12px; color: var(--text-sec); }
+
+/* ============================================================
+   Settings sliders
+   ============================================================ */
+.setting-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.setting-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.setting-hint { font-size: 11px; font-weight: 400; color: var(--text-hint); margin-top: 2px; }
+
+.setting-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.setting-control input[type="range"] {
+  flex: 1;
+  accent-color: var(--teal);
+  height: 4px;
+}
+
+.range-val { font-size: 12px; font-weight: 500; color:var(--text-prim); min-width: 36px; text-align:right; }
+
+/* ============================================================
+   Activity feed
+   ============================================================ */
+.activity-list { list-style: none; }
+
+.activity-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 6px 0;
+  border-bottom: 0.5px solid var(--border);
+  font-size: 12px;
+}
+
+.activity-list li:last-child { border-bottom: none; }
+
+.act-dot  { width:6px; height:6px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.act-text { flex:1; color:var(--text-prim); }
+.act-time { color:var(--text-hint); flex-shrink:0; white-space:nowrap; font-size:11px; }
+.act-empty { font-size:12px; color:var(--text-hint); font-style:italic; padding: 6px 0; }
+
+/* ============================================================
+   Audit search
+   ============================================================ */
+.search-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sr-search {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: var(--bg-panel);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-md);
+  color: var(--text-prim);
+  outline: none;
+  transition: border-color .2s;
+}
+
+.sr-search:focus { border-color: var(--teal); }
+
+.app-filter { max-width: 160px; }
+
+.sr-select {
+  padding: 8px 10px;
+  font-size: 12px;
+  background: var(--bg-panel);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-md);
+  color: var(--text-prim);
+  outline: none;
+  cursor: pointer;
+}
+
+.sr-select:focus { border-color: var(--teal); }
+
+.empty-state { font-size: 12px; color: var(--text-hint); font-style: italic; }
+
+/* ---- Result list ---- */
+.result-list { list-style: none; }
+
+.sr-result {
+  background: var(--bg-panel);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.sr-result-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-sec);
+  margin-bottom: 6px;
+}
+
+.sr-result-app { font-weight: 500; color: var(--blue); }
+
+.sr-result-body { font-size: 12px; color: var(--text-prim); line-height: 1.55; }
+
+.redacted {
+  display: inline-block;
+  background: #2e0d0d;
+  color: var(--red);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Risk badges ---- */
+.risk-badge  { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; border: 0.5px solid; }
+.risk-high   { background:#2e0d0d; color:var(--red);   border-color:#5c1a1a; }
+.risk-med    { background:#2e2205; color:var(--amber); border-color:#5c4510; }
+.risk-low    { background:#0d2e1a; color:var(--teal);  border-color:#1d5c38; }
+
+/* ============================================================
+   Danger zone
+   ============================================================ */
+.danger-zone {
+  border-color: rgba(224,85,85,0.25);
+}
+
+.danger-zone summary::-webkit-details-marker { display: none; }
+.danger-zone summary { list-style: none; }
+.danger-zone summary .sr-section-title { color: var(--red); margin-bottom:0; }
+.danger-zone[open] .sr-section-title { margin-bottom: 0.875rem; }
+
+.danger-desc { font-size: 12px; color: var(--text-hint); margin-bottom: 4px; }
+
+/* ============================================================
+   Error banner
+   ============================================================ */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #2e0d0d;
+  border: 0.5px solid #5c1a1a;
+  border-radius: var(--radius-md);
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   HTMX indicator (spinner while requests in flight)
+   ============================================================ */
+.htmx-indicator { opacity: 0; transition: opacity .2s; }
+.htmx-request .htmx-indicator { opacity: 1; }
