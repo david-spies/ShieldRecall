@@ -111,7 +111,7 @@ All processing is **local-only**. No data leaves your machine.
 ### 1 — Clone and install
 
 ```bash
-git clone https://github.com/your-org/shield-recall.git
+git clone https://github.com/david-spies/shieldrecall.git
 cd shield-recall
 python -m venv .venv
 .venv\Scripts\activate          # Windows
